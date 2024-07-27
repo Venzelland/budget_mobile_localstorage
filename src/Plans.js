@@ -93,7 +93,7 @@ function Plans() {
                             </button>
                             <button
                                 onClick={() => handleDeletePlan(index)}
-                                style={{ marginLeft: '10px', backgroundColor: '#dc3545' }}
+                                style={{ backgroundColor: '#dc3545' }}
                             >
                                 Удалить
                             </button>

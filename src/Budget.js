@@ -174,7 +174,7 @@ function Budget() {
                 </label>
             </div>
             {filter === 'custom' && (
-                <div>
+                <div className={"filter-button"}>
                     <label>
                         Начальная дата:
                         <input

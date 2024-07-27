@@ -56,7 +56,7 @@ function Charts() {
 
     return (
         <div className="charts-container">
-            <h1>Графики по видам трат</h1>
+            <h2>Графики по видам трат</h2>
 
 
 
