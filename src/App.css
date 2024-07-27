@@ -6,7 +6,7 @@ body {
 }
 
 .container {
-  max-width: 500px;
+  max-width: 1500px;
   margin: 50px auto;
   padding: 20px;
   background-color: #fff;
@@ -81,4 +81,141 @@ button:hover {
   font-size: 18px;
   font-weight: bold;
   margin-top: 20px;
+}
+
+
+
+.budget-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.budget-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.item-description,
+.item-amount,
+.item-date {
+  flex: 1;
+  text-align: center;
+}
+
+.item-description {
+  font-weight: bold;
+  text-align: left;
+}
+
+
+.charts-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 20px;
+}
+
+.recharts-wrapper {
+  position: relative;
+  cursor: default;
+  align-items: center;
+  width: 400px;  /* Установите ширину по вашему усмотрению */
+  height: 400px; /* Установите высоту по вашему усмотрению */
+}
+
+.recharts-legend-wrapper {
+  text-align: center;
+}
+
+.charts-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.chart-wrapper {
+  margin: 20px;
+  width: 100%;
+  max-width: 800px;
+}
+
+.recharts-wrapper {
+  position: relative;
+  cursor: default;
+}
+
+.recharts-legend-wrapper {
+  text-align: center;
+}
+
+/* styles.css */
+.charts-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.chart-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  width: 100%;
+  max-width: 800px;
+}
+
+.recharts-wrapper {
+  position: relative;
+  cursor: default;
+}
+
+.recharts-legend-wrapper {
+  position: absolute;
+  width: 390px;
+  height: auto;
+  left: 5px;
+  bottom: 5px;
+  text-align: center;
+}
+
+.recharts-tooltip-wrapper {
+  position: absolute;
+  pointer-events: none;
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.select-container {
+  margin: 20px 0;
+  text-align: center;
+}
+
+select {
+  margin: 0 10px;
+}
+
+.plan-item {
+  display: flex; /* Используем flexbox для выравнивания */
+  flex-direction: row; /* Упорядочиваем элементы по вертикали */
+  align-items: center; /* Выравниваем все дочерние элементы по центру горизонтально */
+  text-align: center; /* Выравниваем текст внутри span по центру */
+  border: 1px solid #ccc; /* Добавляем границу для улучшения визуального восприятия */
+  border-radius: 5px; /* Добавляем скругление углов */
+
+}
+
+input[type="number"] {
+  margin: 10px 0; /* Добавляем отступы сверху и снизу */
+}
+
+button {
+  margin-top: 10px; /* Добавляем отступ сверху для кнопки */
 }
