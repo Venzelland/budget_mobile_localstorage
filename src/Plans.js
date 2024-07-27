@@ -16,8 +16,12 @@ function Plans() {
 
     const handleAddPlan = (e) => {
         e.preventDefault();
-        if (plan && amount) {
-            const newPlan = { plan, amount: parseFloat(amount), saved: parseFloat(savedAmount) || 0 };
+        if (plan && amount && !isNaN(amount)) {
+            const newPlan = {
+                plan,
+                amount: parseFloat(amount),
+                saved: parseFloat(savedAmount) || 0
+            };
             setPlans([...plans, newPlan]);
             setPlan('');
             setAmount('');
@@ -26,12 +30,18 @@ function Plans() {
     };
 
     const handleSaveAmount = (index, amount) => {
+        if (isNaN(amount) || amount === '') return; // Добавляем проверку на корректность ввода
         const newPlans = plans.map((p, i) => {
             if (i === index) {
-                return { ...p, saved: p.saved + parseFloat(amount) };
+                return { ...p, saved: Math.min(p.saved + parseFloat(amount), p.amount) }; // Не позволяйте накоплениям превышать общую сумму
             }
             return p;
         });
+        setPlans(newPlans);
+    };
+
+    const handleDeletePlan = (index) => {
+        const newPlans = plans.filter((_, i) => i !== index);
         setPlans(newPlans);
     };
 
@@ -57,7 +67,7 @@ function Plans() {
             </form>
             <div id="plans-list">
                 {plans.map((p, index) => {
-                    const progressPercentage = (p.saved / p.amount) * 100;
+                    const progressPercentage = p.amount > 0 ? (p.saved / p.amount) * 100 : 0;
                     return (
                         <div key={index} className="plan-item">
                             <span>
@@ -75,7 +85,18 @@ function Plans() {
                                 onChange={(e) => setSavedAmount(e.target.value)}
                                 placeholder="Сумма для добавления"
                             />
-                            <button onClick={() => handleSaveAmount(index, savedAmount)}>Добавить</button>
+                            <button
+                                onClick={() => handleSaveAmount(index, savedAmount)}
+                                disabled={isNaN(savedAmount) || savedAmount === ''}
+                            >
+                                Добавить
+                            </button>
+                            <button
+                                onClick={() => handleDeletePlan(index)}
+                                style={{ marginLeft: '10px', backgroundColor: '#dc3545' }}
+                            >
+                                Удалить
+                            </button>
                         </div>
                     );
                 })}

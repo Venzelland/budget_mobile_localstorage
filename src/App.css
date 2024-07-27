@@ -69,7 +69,7 @@ button:hover {
   margin-top: 20px;
 }
 
-.budget-item, .plan-item {
+.budget-item, .plan-item, .budget-header {
   display: flex;
   justify-content: space-between;
   padding: 10px;
@@ -82,8 +82,6 @@ button:hover {
   font-weight: bold;
   margin-top: 20px;
 }
-
-
 
 .budget-list {
   display: flex;
@@ -98,9 +96,7 @@ button:hover {
   border-bottom: 1px solid #ddd;
 }
 
-.item-description,
-.item-amount,
-.item-date {
+.item-description, .item-amount, .item-date {
   flex: 1;
   text-align: center;
 }
@@ -110,69 +106,27 @@ button:hover {
   text-align: left;
 }
 
-
 .charts-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.chart-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
-  padding: 20px;
+  margin: 20px;
+  width: 100%;
+  max-width: 800px;
 }
 
 .recharts-wrapper {
   position: relative;
   cursor: default;
-  align-items: center;
-  width: 400px;  /* Установите ширину по вашему усмотрению */
+  width: 400px; /* Установите ширину по вашему усмотрению */
   height: 400px; /* Установите высоту по вашему усмотрению */
-}
-
-.recharts-legend-wrapper {
-  text-align: center;
-}
-
-.charts-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-}
-
-.chart-wrapper {
-  margin: 20px;
-  width: 100%;
-  max-width: 800px;
-}
-
-.recharts-wrapper {
-  position: relative;
-  cursor: default;
-}
-
-.recharts-legend-wrapper {
-  text-align: center;
-}
-
-/* styles.css */
-.charts-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-}
-
-.chart-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px;
-  width: 100%;
-  max-width: 800px;
-}
-
-.recharts-wrapper {
-  position: relative;
-  cursor: default;
 }
 
 .recharts-legend-wrapper {
@@ -198,8 +152,6 @@ button:hover {
   text-align: center;
 }
 
-
-
 .plan-item {
   display: flex; /* Используем flexbox для выравнивания */
   flex-direction: row; /* Упорядочиваем элементы по вертикали */
@@ -207,14 +159,11 @@ button:hover {
   text-align: center; /* Выравниваем текст внутри span по центру */
   border: 1px solid #ccc; /* Добавляем границу для улучшения визуального восприятия */
   border-radius: 5px; /* Добавляем скругление углов */
-
 }
 
 input[type="number"] {
   margin: 10px 0; /* Добавляем отступы сверху и снизу */
 }
-
-
 
 .progress-container {
   width: 100%;
@@ -230,4 +179,13 @@ input[type="number"] {
   background-color: #4caf50;
   border-radius: 5px;
   transition: width 0.3s ease;
+}
+
+.header-item {
+  flex: 1 1;
+  text-align: center;
+}
+
+.hidden-button {
+  visibility: hidden; /* Кнопка остается в макете, но не видна */
 }

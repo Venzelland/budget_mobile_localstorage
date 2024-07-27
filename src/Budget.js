@@ -35,6 +35,7 @@ function Budget() {
         return savedItems ? JSON.parse(savedItems) : [];
     });
     const [filter, setFilter] = useState('custom'); // all, day, week, month, custom
+    const [sortConfig, setSortConfig] = useState({ key: 'date', direction: 'ascending' });
 
     useEffect(() => {
         localStorage.setItem('budgetItems', JSON.stringify(budgetItems));
@@ -100,8 +101,37 @@ function Budget() {
         return filteredItems;
     };
 
+    const sortItems = (items, key, direction) => {
+        const sortedItems = [...items];
+        sortedItems.sort((a, b) => {
+            if (key === 'date') {
+                return direction === 'ascending'
+                    ? new Date(a.date) - new Date(b.date)
+                    : new Date(b.date) - new Date(a.date);
+            }
+            if (key === 'amount') {
+                return direction === 'ascending'
+                    ? a.amount - b.amount
+                    : b.amount - a.amount;
+            }
+            if (key === 'description') {
+                return direction === 'ascending'
+                    ? a.description.localeCompare(b.description)
+                    : b.description.localeCompare(a.description);
+            }
+            return 0;
+        });
+        return sortedItems;
+    };
+
+    const handleSort = (key) => {
+        const direction = (sortConfig.key === key && sortConfig.direction === 'ascending') ? 'descending' : 'ascending';
+        setSortConfig({ key, direction });
+    };
+
     const filteredItems = filterItems(budgetItems);
-    const totalAmount = filteredItems.reduce((sum, item) => sum + item.amount, 0);
+    const sortedItems = sortItems(filteredItems, sortConfig.key, sortConfig.direction);
+    const totalAmount = sortedItems.reduce((sum, item) => sum + item.amount, 0);
 
     return (
         <div>
@@ -164,7 +194,19 @@ function Budget() {
                 </div>
             )}
             <div id="budget-list" className="budget-list">
-                {filteredItems.map((item, index) => (
+                <div className="budget-item">
+                    <span className="item-description" onClick={() => handleSort('description')}>
+                        Описание {sortConfig.key === 'description' ? (sortConfig.direction === 'ascending' ? '▲' : '▼') : ''}
+                    </span>
+                    <span className="header-item" onClick={() => handleSort('amount')}>
+                        Сумма {sortConfig.key === 'amount' ? (sortConfig.direction === 'ascending' ? '▲' : '▼') : ''}
+                    </span>
+                    <span className="header-item" onClick={() => handleSort('date')}>
+                        Дата {sortConfig.key === 'date' ? (sortConfig.direction === 'ascending' ? '▲' : '▼') : ''}
+                    </span>
+                    <button className="hidden-button">Удалить</button>
+                </div>
+                {sortedItems.map((item, index) => (
                     <div key={index} className="budget-item">
                         <span className="item-description">{item.description}</span>
                         <span className="item-amount">{item.amount.toFixed(2)} руб.</span>
