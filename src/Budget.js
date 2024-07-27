@@ -1,7 +1,19 @@
 import React, { useState, useEffect } from 'react';
 
+// Список предопределенных категорий трат
+const categories = [
+    'Еда',
+    'Транспорт',
+    'Развлечения',
+    'Одежда',
+    'Жилье',
+    'Медицина',
+    'Образование',
+    'Связь'
+];
+
 function Budget() {
-    const [description, setDescription] = useState('');
+    const [category, setCategory] = useState(categories[0]); // Устанавливаем первую категорию по умолчанию
     const [amount, setAmount] = useState('');
     const [date, setDate] = useState(() => {
         // Устанавливаем дату сегодня по умолчанию
@@ -20,14 +32,13 @@ function Budget() {
 
     const handleAddItem = (e) => {
         e.preventDefault();
-        if (description && amount) {
+        if (amount) {
             const newItem = {
-                description,
+                description: category,
                 amount: parseFloat(amount),
                 date: new Date(date)
             };
             setBudgetItems([...budgetItems, newItem]);
-            setDescription('');
             setAmount('');
             setDate(() => {
                 const today = new Date().toISOString().split('T')[0];
@@ -80,13 +91,15 @@ function Budget() {
         <div>
             <h1>Бюджетное Приложение</h1>
             <form onSubmit={handleAddItem}>
-                <input
-                    type="text"
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                    placeholder="Описание"
+                <select
+                    value={category}
+                    onChange={(e) => setCategory(e.target.value)}
                     required
-                />
+                >
+                    {categories.map((cat, index) => (
+                        <option key={index} value={cat}>{cat}</option>
+                    ))}
+                </select>
                 <input
                     type="number"
                     value={amount}

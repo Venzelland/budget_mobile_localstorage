@@ -5,7 +5,7 @@ import Charts from './Charts';
 import Plans from './Plans';
 import './App.css';
 
-const App: React.FC = () => {
+const App = () => {
   return (
       <Router>
         <div className="container">
