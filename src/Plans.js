@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './App.css'; // Импортируйте файл стилей, если используете внешний CSS файл
 
 function Plans() {
     const [plan, setPlan] = useState('');
@@ -55,17 +56,29 @@ function Plans() {
                 <button type="submit">Добавить</button>
             </form>
             <div id="plans-list">
-                {plans.map((p, index) => (
-                    <div key={index} className="plan-item">
-                        <span>{p.plan} - {p.amount.toFixed(2)} руб. (Накоплено: {p.saved.toFixed(2)} руб.)</span>
-                        <input
-                            type="number"
-                            placeholder="Сумма для добавления"
-                            onChange={(e) => setSavedAmount(e.target.value)}
-                        />
-                        <button onClick={() => handleSaveAmount(index, savedAmount)}>Добавить</button>
-                    </div>
-                ))}
+                {plans.map((p, index) => {
+                    const progressPercentage = (p.saved / p.amount) * 100;
+                    return (
+                        <div key={index} className="plan-item">
+                            <span>
+                                {p.plan} - {p.amount.toFixed(2)} руб. (Накоплено: {p.saved.toFixed(2)} руб.)
+                            </span>
+                            <div className="progress-container">
+                                <div
+                                    className="progress-bar"
+                                    style={{ width: `${progressPercentage}%` }}
+                                ></div>
+                            </div>
+                            <input
+                                type="number"
+                                value={savedAmount}
+                                onChange={(e) => setSavedAmount(e.target.value)}
+                                placeholder="Сумма для добавления"
+                            />
+                            <button onClick={() => handleSaveAmount(index, savedAmount)}>Добавить</button>
+                        </div>
+                    );
+                })}
             </div>
         </div>
     );
