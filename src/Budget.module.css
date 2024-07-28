@@ -1,0 +1,72 @@
+/* Budget.module.css */
+.form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.select, .input, .button {
+    margin: 10px 0;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #218838;
+}
+
+.budgetList {
+    margin-top: 20px;
+}
+
+.budgetItem {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.itemDescription, .itemAmount, .itemDate, .headerItem {
+    flex: 1;
+    text-align: center;
+}
+
+.itemDescription {
+    font-weight: bold;
+    text-align: left;
+}
+
+.hiddenButton {
+    visibility: hidden; /* Кнопка остается в макете, но не видна */
+}
+
+.filterButton {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.totalAmount {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+@media (max-width: 600px) {
+    .form {
+        flex-direction: column;
+    }
+
+    .select, .input, .button {
+        width: 100%;
+        margin: 5px 0;
+    }
+}

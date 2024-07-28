@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import styles from './Budget.module.css'; // Импортируйте файл CSS-модуля
 
-// Список предопределенных категорий трат
 const categories = [
     'Еда',
     'Транспорт',
@@ -13,20 +13,17 @@ const categories = [
 ];
 
 function Budget() {
-    const [category, setCategory] = useState(categories[0]); // Устанавливаем первую категорию по умолчанию
+    const [category, setCategory] = useState(categories[0]);
     const [amount, setAmount] = useState('');
     const [date, setDate] = useState(() => {
-        // Устанавливаем дату сегодня по умолчанию
         const today = new Date().toISOString().split('T')[0];
         return today;
     });
     const [startDate, setStartDate] = useState(() => {
-        // Устанавливаем начальную дату фильтра по умолчанию (начало месяца)
         const today = new Date();
         return new Date(today.getFullYear(), today.getMonth(), 1).toISOString().split('T')[0];
     });
     const [endDate, setEndDate] = useState(() => {
-        // Устанавливаем конечную дату фильтра по умолчанию (сегодня)
         const today = new Date().toISOString().split('T')[0];
         return today;
     });
@@ -34,7 +31,7 @@ function Budget() {
         const savedItems = localStorage.getItem('budgetItems');
         return savedItems ? JSON.parse(savedItems) : [];
     });
-    const [filter, setFilter] = useState('custom'); // all, day, week, month, custom
+    const [filter, setFilter] = useState('custom');
     const [sortConfig, setSortConfig] = useState({ key: 'date', direction: 'ascending' });
 
     useEffect(() => {
@@ -136,11 +133,12 @@ function Budget() {
     return (
         <div>
             <h1>Бюджетное Приложение</h1>
-            <form onSubmit={handleAddItem}>
+            <form onSubmit={handleAddItem} className={styles.form}>
                 <select
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
                     required
+                    className={styles.select}
                 >
                     {categories.map((cat, index) => (
                         <option key={index} value={cat}>{cat}</option>
@@ -152,19 +150,21 @@ function Budget() {
                     onChange={(e) => setAmount(e.target.value)}
                     placeholder="Сумма"
                     required
+                    className={styles.input}
                 />
                 <input
                     type="date"
                     value={date}
                     onChange={(e) => setDate(e.target.value)}
                     required
+                    className={styles.input}
                 />
-                <button type="submit">Добавить</button>
+                <button type="submit" className={styles.button}>Добавить</button>
             </form>
             <div>
                 <label>
                     Фильтр:
-                    <select onChange={(e) => setFilter(e.target.value)} value={filter}>
+                    <select onChange={(e) => setFilter(e.target.value)} value={filter} className={styles.select}>
                         <option value="all">Все</option>
                         <option value="day">Сегодня</option>
                         <option value="week">Неделя</option>
@@ -174,13 +174,14 @@ function Budget() {
                 </label>
             </div>
             {filter === 'custom' && (
-                <div className={"filter-button"}>
+                <div className={styles.filterButton}>
                     <label>
                         Начальная дата:
                         <input
                             type="date"
                             value={startDate}
                             onChange={(e) => setStartDate(e.target.value)}
+                            className={styles.input}
                         />
                     </label>
                     <label>
@@ -189,33 +190,34 @@ function Budget() {
                             type="date"
                             value={endDate}
                             onChange={(e) => setEndDate(e.target.value)}
+                            className={styles.input}
                         />
                     </label>
                 </div>
             )}
-            <div id="budget-list" className="budget-list">
-                <div className="budget-item">
-                    <span className="item-description" onClick={() => handleSort('description')}>
+            <div id="budget-list" className={styles.budgetList}>
+                <div className={styles.budgetItem}>
+                    <span className={styles.itemDescription} onClick={() => handleSort('description')}>
                         Описание {sortConfig.key === 'description' ? (sortConfig.direction === 'ascending' ? '▲' : '▼') : ''}
                     </span>
-                    <span className="header-item" onClick={() => handleSort('amount')}>
+                    <span className={styles.headerItem} onClick={() => handleSort('amount')}>
                         Сумма {sortConfig.key === 'amount' ? (sortConfig.direction === 'ascending' ? '▲' : '▼') : ''}
                     </span>
-                    <span className="header-item" onClick={() => handleSort('date')}>
+                    <span className={styles.headerItem} onClick={() => handleSort('date')}>
                         Дата {sortConfig.key === 'date' ? (sortConfig.direction === 'ascending' ? '▲' : '▼') : ''}
                     </span>
-                    <button className="hidden-button">Удалить</button>
+                    <button className={styles.hiddenButton}>Удалить</button>
                 </div>
                 {sortedItems.map((item, index) => (
-                    <div key={index} className="budget-item">
-                        <span className="item-description">{item.description}</span>
-                        <span className="item-amount">{item.amount.toFixed(2)} руб.</span>
-                        <span className="item-date">{new Date(item.date).toLocaleDateString()}</span>
-                        <button onClick={() => handleRemoveItem(index)}>Удалить</button>
+                    <div key={index} className={styles.budgetItem}>
+                        <span className={styles.itemDescription}>{item.description}</span>
+                        <span className={styles.itemAmount}>{item.amount.toFixed(2)} руб.</span>
+                        <span className={styles.itemDate}>{new Date(item.date).toLocaleDateString()}</span>
+                        <button onClick={() => handleRemoveItem(index)} className={styles.button}>Удалить</button>
                     </div>
                 ))}
             </div>
-            <div id="total-amount">Итог: {totalAmount.toFixed(2)} руб.</div>
+            <div className={styles.totalAmount}>Итог: {totalAmount.toFixed(2)} руб.</div>
         </div>
     );
 }

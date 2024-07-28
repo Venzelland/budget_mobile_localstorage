@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import './App.css'; // Импортируйте файл стилей, если используете внешний CSS файл
+import styles from './Plans.module.css'; // Импортируйте файл CSS-модуля
 
-function Plans() {
+const Plans = () => {
     const [plan, setPlan] = useState('');
     const [amount, setAmount] = useState('');
     const [savedAmount, setSavedAmount] = useState('');
@@ -16,12 +16,8 @@ function Plans() {
 
     const handleAddPlan = (e) => {
         e.preventDefault();
-        if (plan && amount && !isNaN(amount)) {
-            const newPlan = {
-                plan,
-                amount: parseFloat(amount),
-                saved: parseFloat(savedAmount) || 0
-            };
+        if (plan && amount) {
+            const newPlan = { plan, amount: parseFloat(amount), saved: parseFloat(savedAmount) || 0 };
             setPlans([...plans, newPlan]);
             setPlan('');
             setAmount('');
@@ -30,10 +26,9 @@ function Plans() {
     };
 
     const handleSaveAmount = (index, amount) => {
-        if (isNaN(amount) || amount === '') return; // Добавляем проверку на корректность ввода
         const newPlans = plans.map((p, i) => {
             if (i === index) {
-                return { ...p, saved: Math.min(p.saved + parseFloat(amount), p.amount) }; // Не позволяйте накоплениям превышать общую сумму
+                return { ...p, saved: p.saved + parseFloat(amount) };
             }
             return p;
         });
@@ -48,13 +43,14 @@ function Plans() {
     return (
         <div>
             <h1>Планы покупок</h1>
-            <form onSubmit={handleAddPlan}>
+            <form onSubmit={handleAddPlan} className={styles.form}>
                 <input
                     type="text"
                     value={plan}
                     onChange={(e) => setPlan(e.target.value)}
                     placeholder="План"
                     required
+                    className={styles.input}
                 />
                 <input
                     type="number"
@@ -62,20 +58,21 @@ function Plans() {
                     onChange={(e) => setAmount(e.target.value)}
                     placeholder="Необходимая сумма"
                     required
+                    className={styles.input}
                 />
-                <button type="submit">Добавить</button>
+                <button type="submit" className={styles.button}>Добавить</button>
             </form>
-            <div id="plans-list">
+            <div className={styles.plansList}>
                 {plans.map((p, index) => {
-                    const progressPercentage = p.amount > 0 ? (p.saved / p.amount) * 100 : 0;
+                    const progressPercentage = (p.saved / p.amount) * 100;
                     return (
-                        <div key={index} className="plan-item">
-                            <span>
-                                {p.plan} - {p.amount.toFixed(2)} руб. (Накоплено: {p.saved.toFixed(2)} руб.)
-                            </span>
-                            <div className="progress-container">
+                        <div key={index} className={styles.planItem}>
+              <span>
+                {p.plan} - {p.amount.toFixed(2)} руб. (Накоплено: {p.saved.toFixed(2)} руб.)
+              </span>
+                            <div className={styles.progressContainer}>
                                 <div
-                                    className="progress-bar"
+                                    className={styles.progressBar}
                                     style={{ width: `${progressPercentage}%` }}
                                 ></div>
                             </div>
@@ -84,25 +81,16 @@ function Plans() {
                                 value={savedAmount}
                                 onChange={(e) => setSavedAmount(e.target.value)}
                                 placeholder="Сумма для добавления"
+                                className={styles.input}
                             />
-                            <button
-                                onClick={() => handleSaveAmount(index, savedAmount)}
-                                disabled={isNaN(savedAmount) || savedAmount === ''}
-                            >
-                                Добавить
-                            </button>
-                            <button
-                                onClick={() => handleDeletePlan(index)}
-                                style={{ backgroundColor: '#dc3545' }}
-                            >
-                                Удалить
-                            </button>
+                            <button onClick={() => handleSaveAmount(index, savedAmount)} className={styles.button}>Добавить</button>
+                            <button onClick={() => handleDeletePlan(index)} className={styles.button}>Удалить</button>
                         </div>
                     );
                 })}
             </div>
         </div>
     );
-}
+};
 
 export default Plans;
