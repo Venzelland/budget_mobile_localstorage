@@ -1,0 +1,200 @@
+/* styles.css */
+
+/* Основные стили */
+body {
+    background-color: #f4f4f4;
+    color: #333;
+    font-size: 16px;
+    padding: 10px;
+}
+
+.container {
+    max-width: 412px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+select,
+input,
+button {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.budgetItem {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.budgetItem:last-child {
+    border-bottom: none;
+}
+
+.budgetItem span {
+    flex: 1;
+}
+
+.budgetItem button {
+    margin-left: 10px;
+}
+
+.totalAmount {
+    margin-top: 20px;
+}
+
+.totalAmount div {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+
+@media (max-width: 414px) {
+    .container {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 1.2em;
+    }
+
+    select,
+    input,
+    button {
+        font-size: 0.9em;
+        padding: 8px;
+    }
+
+    .budgetItem span {
+        font-size: 0.9em;
+    }
+
+    .totalAmount div {
+        font-size: 1em;
+    }
+}
+
+
+.container {
+    padding: 20px;
+    position: relative; /* Для размещения затененного фона */
+}
+
+/* Затенение фона при открытии меню */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Полупрозрачный черный фон */
+    display: none; /* Скрываем по умолчанию */
+    z-index: 5; /* Менее высокий z-index, чем у бургер-меню */
+}
+
+.overlay.show {
+    display: block; /* Показываем при необходимости */
+}
+
+.navbar {
+    position: relative;
+    display: flex;
+    justify-content: flex-end; /* Размещаем бургер-меню справа */
+}
+
+.burger-menu {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    z-index: 10; /* Высокий z-index, чтобы находиться поверх контента */
+    margin-left: auto; /* Отодвигаем бургер-меню вправо */
+}
+
+.burger-menu .line {
+    width: 100%;
+    height: 3px;
+    background-color: #333;
+    border-radius: 10px;
+    transition: all 0.3s linear;
+}
+
+.burger-menu .line.open:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.burger-menu .line.open:nth-child(2) {
+    opacity: 0;
+}
+
+.burger-menu .line.open:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 250px; /* Ширина меню */
+    /*height: 500px;*/
+    background-color: #fff;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    transform: translateX(100%); /* Скрываем меню за пределами экрана */
+    transition: transform 0.3s ease;
+    z-index: 20; /* Высокий z-index, чтобы быть поверх затененного фона */
+}
+
+.nav-links.open {
+    transform: translateX(0); /* Показываем меню */
+}
+
+.nav-links li {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1.5em;
+}
+
+@media (max-width: 412px) {
+    .burger-menu {
+        display: flex;
+    }
+}
