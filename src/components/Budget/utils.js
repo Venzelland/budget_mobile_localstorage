@@ -1,23 +1,23 @@
-export const categories = [
-    'Еда',
-    'Транспорт',
-    'Развлечения',
-    'Одежда',
-    'Жилье',
-    'Медицина',
-    'Образование',
-    'Связь'
-];
+import {exchangeRates} from "./constants";
 
-export const currencySymbols = {
-    'руб': '₽',
-    'дол': '$',
-    'евро': '€'
+export const formatAmount = (value) => {
+    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 };
-export const exchangeRates = {
-    'руб': 1,
-    'дол': 0.013,
-    'евро': 0.012
+
+export const calculateTotalAmounts = (items) => {
+    const totals = { 'руб': 0, 'дол': 0, 'евро': 0 };
+
+    items.forEach(item => {
+        totals[item.currency] += item.amount;
+    });
+
+    Object.keys(totals).forEach(currency => {
+        if (currency !== 'руб') {
+            totals[currency] = totals['руб'] * exchangeRates[currency];
+        }
+    });
+
+    return totals;
 };
 
 export const filterItems = (items, filter, startDate, endDate) => {
@@ -61,24 +61,4 @@ export const sortItems = (items, key, direction) => {
         return 0;
     });
     return sortedItems;
-};
-
-export const formatAmount = (value) => {
-    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-};
-
-export const calculateTotalAmounts = (items) => {
-    const totals = { 'руб': 0, 'дол': 0, 'евро': 0 };
-
-    items.forEach(item => {
-        totals[item.currency] += item.amount;
-    });
-
-    Object.keys(totals).forEach(currency => {
-        if (currency !== 'руб') {
-            totals[currency] = totals['руб'] * exchangeRates[currency];
-        }
-    });
-
-    return totals;
 };
