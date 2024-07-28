@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import Budget from './Budget';
-import Charts from './Charts';
-import Plans from './Plans';
-import Invest from './Invest';
-import Formulas from './Formulas';
-import './App.css';
+import Budget from './components/Budget/Budget';
+import Charts from './components/Charts/Charts';
+import Plans from './components/Plans/Plans';
+import Invest from './components/Invest/Invest';
+import Formulas from './components/Formulas/Formulas';
+import './styles/App.css';
 
 const App = () => {
   return (
