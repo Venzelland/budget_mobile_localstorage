@@ -1,0 +1,84 @@
+.container {
+    padding: 20px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.select, .input, .button {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+.select, .input {
+    border: 1px solid #ccc;
+}
+
+.button {
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+}
+
+.budget-list {
+    margin-bottom: 20px;
+}
+
+.budget-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.hidden-button {
+    visibility: hidden;
+}
+
+.header-item {
+    cursor: pointer;
+}
+
+.item-description, .item-amount, .item-date {
+    flex: 1;
+}
+
+.item-amount, .item-date {
+    text-align: right;
+}
+
+.total-amount {
+    margin-top: 20px;
+}
+
+/* Медиа-запросы для мобильных устройств */
+@media (max-width: 412px) {
+    .form, .budget-list, .total-amount {
+        font-size: 0.9em;
+    }
+
+    .budget-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .item-amount, .item-date {
+        text-align: left;
+    }
+
+    .button {
+        padding: 8px;
+        font-size: 0.9em;
+    }
+
+    .select, .input {
+        padding: 8px;
+        font-size: 0.9em;
+    }
+}

@@ -57,9 +57,6 @@ function Charts() {
     return (
         <div className="charts-container">
             <h2>Графики по видам трат</h2>
-
-
-
             <div className="chart-wrapper">
                 <div className="recharts-wrapper">
                     <PieChart width={410} height={400}>

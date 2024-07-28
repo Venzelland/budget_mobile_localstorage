@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styles from './Budget.module.css'; // Импортируйте файл CSS-модуля
+import './Budget.css'; // Импортируем файл CSS
 
 const categories = [
     'Еда',
@@ -12,7 +12,6 @@ const categories = [
     'Связь'
 ];
 
-const currencies = ['руб', 'дол', 'евро'];
 const currencySymbols = {
     'руб': '₽',
     'дол': '$',
@@ -165,14 +164,14 @@ function Budget() {
     const sortedItems = sortItems(filteredItems, sortConfig.key, sortConfig.direction);
 
     return (
-        <div>
+        <div className="container">
             <h1>Бюджетное Приложение</h1>
-            <form onSubmit={handleAddItem} className={styles.form}>
+            <form onSubmit={handleAddItem} className="form">
                 <select
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
                     required
-                    className={styles.select}
+                    className="select"
                 >
                     {categories.map((cat, index) => (
                         <option key={index} value={cat}>{cat}</option>
@@ -184,21 +183,21 @@ function Budget() {
                     onChange={(e) => setAmount(e.target.value)}
                     placeholder="Сумма"
                     required
-                    className={styles.input}
+                    className="input"
                 />
                 <input
                     type="date"
                     value={date}
                     onChange={(e) => setDate(e.target.value)}
                     required
-                    className={styles.input}
+                    className="input"
                 />
-                <button type="submit" className={styles.button}>Добавить</button>
+                <button type="submit" className="button">Добавить</button>
             </form>
             <div>
                 <label>
                     Фильтр:
-                    <select onChange={(e) => setFilter(e.target.value)} value={filter} className={styles.select}>
+                    <select onChange={(e) => setFilter(e.target.value)} value={filter} className="select">
                         <option value="all">Все</option>
                         <option value="day">Сегодня</option>
                         <option value="week">Неделя</option>
@@ -208,14 +207,14 @@ function Budget() {
                 </label>
             </div>
             {filter === 'custom' && (
-                <div className={styles.filterButton}>
+                <div className="date-range">
                     <label>
                         Начальная дата:
                         <input
                             type="date"
                             value={startDate}
                             onChange={(e) => setStartDate(e.target.value)}
-                            className={styles.input}
+                            className="input"
                         />
                     </label>
                     <label>
@@ -224,38 +223,38 @@ function Budget() {
                             type="date"
                             value={endDate}
                             onChange={(e) => setEndDate(e.target.value)}
-                            className={styles.input}
+                            className="input"
                         />
                     </label>
                 </div>
             )}
-            <div id="budget-list" className={styles.budgetList}>
-                <div className={styles.budgetItem}>
-                    <span className={styles.itemDescription} onClick={() => handleSort('description')}>
+            <div id="budget-list" className="budget-list">
+                <div className="budget-item header">
+                    <span className="item-description" onClick={() => handleSort('description')}>
                         Описание {sortConfig.key === 'description' ? (sortConfig.direction === 'ascending' ? '▲' : '▼') : ''}
                     </span>
-                    <span className={styles.headerItem} onClick={() => handleSort('amount')}>
+                    <span className="header-item" onClick={() => handleSort('amount')}>
                         Сумма {sortConfig.key === 'amount' ? (sortConfig.direction === 'ascending' ? '▲' : '▼') : ''}
                     </span>
-                    <span className={styles.headerItem} onClick={() => handleSort('date')}>
+                    <span className="header-item" onClick={() => handleSort('date')}>
                         Дата {sortConfig.key === 'date' ? (sortConfig.direction === 'ascending' ? '▲' : '▼') : ''}
                     </span>
-                    <button className={styles.hiddenButton}>Удалить</button>
+                    <button className="hidden-button">Удалить</button>
                 </div>
                 {sortedItems.map((item, index) => (
-                    <div key={index} className={styles.budgetItem}>
-                        <span className={styles.itemDescription}>{item.description}</span>
-                        <span className={styles.itemAmount}>{formatAmount(Math.round(item.amount))} {currencySymbols[item.currency]}</span>
-                        <span className={styles.itemDate}>{new Date(item.date).toLocaleDateString()}</span>
-                        <button onClick={() => handleRemoveItem(index)} className={styles.button}>Удалить</button>
+                    <div key={index} className="budget-item">
+                        <span className="item-description">{item.description}</span>
+                        <span className="item-amount">{formatAmount(Math.round(item.amount))} {currencySymbols[item.currency]}</span>
+                        <span className="item-date">{new Date(item.date).toLocaleDateString()}</span>
+                        <button onClick={() => handleRemoveItem(index)} className="button">Удалить</button>
                     </div>
                 ))}
             </div>
-            <div className={styles.totalAmount}>
-                <div>Итог:</div>
+            <div className="total-amount">
+                <h2>Итоговые суммы:</h2>
                 {Object.keys(totalAmounts).map(currency => (
                     <div key={currency}>
-                        {formatAmount(Math.round(totalAmounts[currency]))} {currencySymbols[currency]}
+                        {currencySymbols[currency]}: {formatAmount(Math.round(totalAmounts[currency]))}
                     </div>
                 ))}
             </div>
