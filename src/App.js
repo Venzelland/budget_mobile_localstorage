@@ -36,11 +36,11 @@ const App = () => {
             </ul>
           </nav>
           <Routes>
-            <Route path="/" element={<Budget />} />
-            <Route path="/charts" element={<Charts />} />
-            <Route path="/plans" element={<Plans />} />
-            <Route path="/invest" element={<Invest />} />
-            <Route path="/formulas" element={<Formulas />} />
+            <Route path="/budget_mobile_localstorage/" element={<Budget />} />
+            <Route path="/budget_mobile_localstorage/charts" element={<Charts />} />
+            <Route path="/budget_mobile_localstorage/plans" element={<Plans />} />
+            <Route path="/budget_mobile_localstorage/invest" element={<Invest />} />
+            <Route path="/budget_mobile_localstorage/formulas" element={<Formulas />} />
           </Routes>
         </div>
       </Router>
