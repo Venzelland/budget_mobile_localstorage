@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/budget_mobile_localstorage/static/css/main.f058405e.css",
-    "main.js": "/budget_mobile_localstorage/static/js/main.0f9ad0bf.js",
+    "main.js": "/budget_mobile_localstorage/static/js/main.4dc980fb.js",
     "static/js/453.541e49bc.chunk.js": "/budget_mobile_localstorage/static/js/453.541e49bc.chunk.js",
     "index.html": "/budget_mobile_localstorage/index.html",
     "main.f058405e.css.map": "/budget_mobile_localstorage/static/css/main.f058405e.css.map",
-    "main.0f9ad0bf.js.map": "/budget_mobile_localstorage/static/js/main.0f9ad0bf.js.map",
+    "main.4dc980fb.js.map": "/budget_mobile_localstorage/static/js/main.4dc980fb.js.map",
     "453.541e49bc.chunk.js.map": "/budget_mobile_localstorage/static/js/453.541e49bc.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f058405e.css",
-    "static/js/main.0f9ad0bf.js"
+    "static/js/main.4dc980fb.js"
   ]
 }
