@@ -28,11 +28,11 @@ const App = () => {
               <div className={`line ${menuOpen ? 'open' : ''}`}></div>
             </div>
             <ul className={`nav-links ${menuOpen ? 'open' : ''}`}>
-              <li><Link to="/" onClick={toggleMenu}>Бюджет</Link></li>
-              <li><Link to="/charts" onClick={toggleMenu}>Графики</Link></li>
-              <li><Link to="/plans" onClick={toggleMenu}>Планы</Link></li>
-              <li><Link to="/invest" onClick={toggleMenu}>Инвестирование</Link></li>
-              <li><Link to="/formulas" onClick={toggleMenu}>Формулы</Link></li>
+              <li><Link to="/budget_mobile_localstorage" onClick={toggleMenu}>Бюджет</Link></li>
+              <li><Link to="/budget_mobile_localstorage/charts" onClick={toggleMenu}>Графики</Link></li>
+              <li><Link to="/budget_mobile_localstorage/plans" onClick={toggleMenu}>Планы</Link></li>
+              <li><Link to="/budget_mobile_localstorage/invest" onClick={toggleMenu}>Инвестирование</Link></li>
+              <li><Link to="/budget_mobile_localstorage/formulas" onClick={toggleMenu}>Формулы</Link></li>
             </ul>
           </nav>
           <Routes>
