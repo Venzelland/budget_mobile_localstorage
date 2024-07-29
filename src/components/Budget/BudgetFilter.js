@@ -1,8 +1,8 @@
 import React from 'react';
 
-const BudgetFilter = ({ filter, startDate, endDate, onFilterChange, onStartDateChange, onEndDateChange }) => (
+const BudgetFilter = ({filter, startDate, endDate, onFilterChange, onStartDateChange, onEndDateChange}) => (
     <div>
-        <label>
+        <label className={"filter-select"}>
             Фильтр:
             <select onChange={(e) => onFilterChange(e.target.value)} value={filter} className="select">
                 <option value="all">Все</option>

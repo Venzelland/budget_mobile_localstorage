@@ -29,7 +29,8 @@ export const filterItems = (items, filter, startDate, endDate) => {
             filteredItems = items.filter(item => new Date(item.date).toDateString() === now.toDateString());
             break;
         case 'week':
-            const startOfWeek = new Date(now.setDate(now.getDate() - now.getDay()));
+            const startOfWeek = new Date(now);
+            startOfWeek.setDate(startOfWeek.getDate() - 6); // 6 дней назад
             filteredItems = items.filter(item => new Date(item.date) >= startOfWeek && new Date(item.date) <= now);
             break;
         case 'month':

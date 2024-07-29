@@ -66,7 +66,7 @@ function Formulas() {
             <h1>Срок достижения цели</h1>
             <div className={styles.form}>
                 <div className={styles.formGroup}>
-                    <label>Ваша цель (₽):</label>
+                    <label>Ваша цель:</label>
                     <input
                         type="number"
                         value={goal}
@@ -75,7 +75,7 @@ function Formulas() {
                     />
                 </div>
                 <div className={styles.formGroup}>
-                    <label>Стартовый капитал (₽):</label>
+                    <label>Стартовый капитал:</label>
                     <input
                         type="number"
                         value={principal}
@@ -100,7 +100,7 @@ function Formulas() {
                     </select>
                 </div>
                 <div className={styles.formGroup}>
-                    <label>Дополнительные вложения (₽):</label>
+                    <label>Дополнительные вложения:</label>
                     <input
                         type="number"
                         value={periodicPayment}

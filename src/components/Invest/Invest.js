@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styles from './Invest.module.css'; // Импортируйте файл CSS-модуля
+import '../../styles.css'; // Импортируйте общий файл CSS
 
 const Invest = () => {
     const [investmentName, setInvestmentName] = useState('');
@@ -39,16 +39,15 @@ const Invest = () => {
     }, 0);
 
     return (
-        <div>
-            <h1>Инвестирование</h1>
-            <form onSubmit={handleAddInvestment} className={styles.form}>
+        <div className="container">
+            <h2>Инвестирование</h2>
+            <form onSubmit={handleAddInvestment}>
                 <input
                     type="text"
                     value={investmentName}
                     onChange={(e) => setInvestmentName(e.target.value)}
                     placeholder="Название инвестиции"
                     required
-                    className={styles.input}
                 />
                 <input
                     type="number"
@@ -56,7 +55,6 @@ const Invest = () => {
                     onChange={(e) => setQuantity(e.target.value)}
                     placeholder="Количество"
                     required
-                    className={styles.input}
                 />
                 <input
                     type="number"
@@ -64,12 +62,11 @@ const Invest = () => {
                     onChange={(e) => setPrice(e.target.value)}
                     placeholder="Цена"
                     required
-                    className={styles.input}
                 />
-                <button type="submit" className={styles.button}>Добавить</button>
+                <button type="submit">Добавить</button>
             </form>
-            <div id="investments-list" className={styles.investmentsList}>
-                <table className={styles.table}>
+            <div id="investments-list" className="investments-list">
+                <table className="table">
                     <thead>
                     <tr>
                         <th>Название</th>
@@ -87,10 +84,7 @@ const Invest = () => {
                             <td>{investment.price.toFixed(2)} руб.</td>
                             <td>{(investment.quantity * investment.price).toFixed(2)} руб.</td>
                             <td>
-                                <button
-                                    onClick={() => handleDeleteInvestment(index)}
-                                    className={styles.tdButton}
-                                >
+                                <button onClick={() => handleDeleteInvestment(index)}>
                                     Удалить
                                 </button>
                             </td>
@@ -98,7 +92,7 @@ const Invest = () => {
                     ))}
                     </tbody>
                 </table>
-                <h2 className={styles.totalInvestmentValue}>
+                <h2 className="total-investment-value">
                     Общая стоимость всех инвестиций: {totalInvestmentValue.toFixed(2)} руб.
                 </h2>
             </div>

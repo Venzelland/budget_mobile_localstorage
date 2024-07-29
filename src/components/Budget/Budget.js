@@ -5,7 +5,7 @@ import BudgetForm from './BudgetForm';
 import BudgetFilter from './BudgetFilter';
 import BudgetList from './BudgetList';
 import TotalAmounts from './TotalAmounts';
-import {categories} from "./constants";
+import { categories } from "./constants";
 
 function Budget() {
     const [category, setCategory] = useState(categories[0]);
@@ -51,6 +51,10 @@ function Budget() {
     const filteredItems = filterItems(budgetItems, filter, startDate, endDate);
     const sortedItems = sortItems(filteredItems, sortConfig.key, sortConfig.direction);
 
+    const handleSort = ({ key, direction }) => {
+        setSortConfig({ key, direction });
+    };
+
     return (
         <div className="container">
             <h1>Бюджетное Приложение</h1>
@@ -73,7 +77,7 @@ function Budget() {
             />
             <BudgetList
                 items={sortedItems}
-                onSort={setSortConfig}
+                onSort={handleSort}
                 onRemoveItem={handleRemoveItem}
                 sortConfig={sortConfig}
             />

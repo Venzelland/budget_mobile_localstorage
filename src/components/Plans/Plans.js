@@ -68,7 +68,10 @@ const Plans = () => {
                     return (
                         <div key={index} className={styles.planItem}>
               <span>
-                {p.plan} - {p.amount.toFixed(2)} руб. (Накоплено: {p.saved.toFixed(2)} руб.)
+                {p.plan} - {p.amount.toFixed(2)} руб.
+              </span>
+                            <span>
+                (Накоплено: {p.saved.toFixed(2)} руб.)
               </span>
                             <div className={styles.progressContainer}>
                                 <div

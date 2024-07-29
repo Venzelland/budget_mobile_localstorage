@@ -56,17 +56,17 @@ function Charts() {
 
     return (
         <div className="charts-container">
-            <h2>Графики по видам трат</h2>
+            <h1>Графики по видам трат</h1>
             <div className="chart-wrapper">
                 <div className="recharts-wrapper">
-                    <PieChart width={410} height={400}>
+                    <PieChart width={300} height={400}>
                         <Pie
                             data={groupedData}
                             dataKey="value"
                             nameKey="name"
                             cx="50%"
                             cy="50%"
-                            outerRadius={150}
+                            outerRadius={100}
                             fill="#8884d8"
                             label
                         >
@@ -111,7 +111,6 @@ function Charts() {
                 </label>
             </div>
             <div className="chart-wrapper">
-
                 <ResponsiveContainer width="100%" height={400}>
                     <LineChart
                         data={daysData}

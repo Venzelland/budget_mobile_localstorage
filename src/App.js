@@ -18,7 +18,7 @@ const App = () => {
 
   return (
       <Router>
-        <div className="container">
+        <div className="wrapper">
           {/* Затенение фона при открытии меню */}
           <div className={`overlay ${menuOpen ? 'show' : ''}`} onClick={toggleMenu}></div>
           <nav className="navbar">

@@ -35,18 +35,16 @@
     justify-content: space-between;
     padding: 10px;
     border-bottom: 1px solid #ccc;
+    align-items: center
 }
 
 .hidden-button {
     visibility: hidden;
+    position: absolute;
 }
 
 .header-item {
     cursor: pointer;
-}
-
-.item-description, .item-amount, .item-date {
-    flex: 1;
 }
 
 .item-amount, .item-date {
@@ -55,6 +53,7 @@
 
 .total-amount {
     margin-top: 20px;
+    text-align: center;
 }
 
 /* Медиа-запросы для мобильных устройств */
@@ -77,8 +76,71 @@
         font-size: 0.9em;
     }
 
-    .select, .input {
-        padding: 8px;
-        font-size: 0.9em;
+    .budget-item {
+        display: flex; /* Используем Flexbox для выравнивания элементов */
+        flex-direction: column; /* Располагаем элементы в колонку */
+        margin-bottom: 10px; /* Отступ между элементами списка */
+        border: 1px solid #ddd; /* Граница для визуального разделения */
+        border-radius: 4px; /* Скругляем углы */
+        align-items: center
     }
+
+    .budget-item .item-container {
+        display: flex;
+        justify-content: space-evenly;
+        margin: 10px;
+        width: 100%;
+        align-items: center;
+        text-align: center;
+    }
+
+    .budget-item .item-amount,
+    .budget-item .item-date {
+        text-align: right; /* Выравнивание по правому краю */
+    }
+
+    .budget-item .button {
+        width: 100%; /* Кнопка занимает всю ширину контейнера */
+        padding: 10px; /* Внутренние отступы для кнопки */
+        background-color: #007bff; /* Цвет фона кнопки */
+        color: #fff; /* Цвет текста кнопки */
+        border: none; /* Убираем границу */
+        border-radius: 4px; /* Скругляем углы кнопки */
+        cursor: pointer; /* Курсор указывает на интерактивный элемент */
+        font-size: 16px; /* Размер шрифта кнопки */
+    }
+
+    .budget-item .button:hover {
+        background-color: #0056b3; /* Цвет фона кнопки при наведении */
+    }
+}
+
+.charts-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center; /* Центрирует текст */
+    margin: 20px;
+}
+
+.chart-wrapper {
+    display: flex;
+    justify-content: center; /* Центрирует графики */
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.select-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.filter-select{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: baseline;
+    justify-content: center;
 }

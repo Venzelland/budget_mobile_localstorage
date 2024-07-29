@@ -5,11 +5,13 @@ import {currencySymbols} from "./constants";
 const TotalAmounts = ({ totals }) => (
     <div className="total-amount">
         <h2>Итоговые суммы:</h2>
-        {Object.keys(totals).map(currency => (
-            <div key={currency}>
-                {currencySymbols[currency]}: {formatAmount(Math.round(totals[currency]))}
-            </div>
-        ))}
+        <div style={{ display: "flex", flexDirection: "row", justifyContent: 'space-around' }} >
+            {Object.keys(totals).map(currency => (
+                <div key={currency} style={{ display: 'flex'}}>
+                    {currencySymbols[currency]}: {formatAmount(Math.round(totals[currency]))}
+                </div>
+            ))}
+        </div>
     </div>
 );
 
